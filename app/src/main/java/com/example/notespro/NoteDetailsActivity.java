@@ -46,7 +46,7 @@ public class NoteDetailsActivity extends AppCompatActivity {
         note.setContent(noteContent);
         note.setTimestamp(Timestamp.now());
 
-        Log.d("NoteDetailsActivity", "Note object created: " + noteTitle);
+
 
         saveNoteToFirebase(note);
     }
@@ -55,17 +55,17 @@ public class NoteDetailsActivity extends AppCompatActivity {
         DocumentReference documentReference;
         documentReference=Utility.getCollectionReferenceForNotes().document();
 
-        Log.d("NoteDetailsActivity", "Document reference created");
+
 
         documentReference.set(note).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Log.d("NoteDetailsActivity", "Note successfully added");
+
                     Utility.showToast(NoteDetailsActivity.this,"Note added successfully");
                     finish();
                 }else{
-                    Log.e("NoteDetailsActivity", "Error adding note", task.getException());
+
                     Utility.showToast(NoteDetailsActivity.this,"Failed while adding note");
                 }
             }
